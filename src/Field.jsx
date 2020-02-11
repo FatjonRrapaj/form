@@ -9,7 +9,7 @@ class Field extends Component {
     if (normalize) {
       value = normalize(value);
     }
-
+    formApi.onChange(((field = { name, value }), formApi));
     formApi.setField(name, value);
     formApi.validateField(name);
     _internal.updateComponent(name);

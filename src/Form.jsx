@@ -186,6 +186,11 @@ class Form extends Component {
     return touched.reduce((acc, field) => ({ ...acc, [field]: values[field] }), {});
   };
 
+  onChange = (field, formApi) => {
+    const { onFormChange = () => {} } = this.props;
+    onFormChange(field, formApi);
+  };
+
   API = {
     _internal: {
       storeComponent: this.storeComponent,
@@ -203,6 +208,7 @@ class Form extends Component {
     resetField: this.resetField,
     resetFields: this.resetFields,
     validate: this.validate,
+    onChange: this.onChange,
     validateField: this.validateField,
     getError: this.getError,
     getErrors: this.getErrors,
