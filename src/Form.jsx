@@ -13,15 +13,12 @@ class Form extends Component {
   }
 
   componentDidMount() {
-    console.log('FORM MOUNTED');
     const { formApi } = this.props;
     const { _internal, ...rest } = this.API;
     formApi && formApi(rest);
   }
 
   componendDidUpdate(prevProps) {
-    console.log('FORM UPDATED');
-    console.log('prevProps: ', prevProps);
     const { formApi } = prevProps;
     const { onFormValuesChange } = this.props;
     onFormValuesChange(prevFormApi);
@@ -34,13 +31,7 @@ class Form extends Component {
 
   storeComponent = (name = '', ref) => (this.fields[name] = ref);
 
-  UNSAFE_componentWillReceiveProps(porps) {
-    console.log('porps at will receive props: ', porps);
-    console.log('WILL RECEIVE PROPS CALLED');
-  }
-
   updateComponent = (name = '') => {
-    console.log('UPDATE COMPONENT CALLED');
     if (this.fields[name]) {
       this.fields[name].forceUpdate();
     } else {
@@ -112,10 +103,8 @@ class Form extends Component {
     const { schema } = this.props;
     const values = this.getFields();
     let isValid = false;
-    console.log('INSIDE VALIDATE');
 
     try {
-      console.log('VALIDATE SYNC CALLED');
       isValid = schema.validateSync(values, { abortEarly: false });
     } catch (e) {
       this.errors = e.inner.reduce((acc, { message, path }) => {
@@ -143,7 +132,6 @@ class Form extends Component {
   };
 
   validateField = (name = '') => {
-    console.log('VALIDATE FIELD CALLED');
     const { schema } = this.props;
     let isValid = false;
 
@@ -167,7 +155,6 @@ class Form extends Component {
   };
 
   getError = (name = '') => {
-    console.log('GET ERROR CALLED');
     return this.errors[name] || '';
   };
 
