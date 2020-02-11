@@ -18,6 +18,12 @@ class Form extends Component {
     formApi && formApi(rest);
   }
 
+  componendDidUpdate(prevProps) {
+    const { formApi } = prevProps;
+    const { onFormValuesChange } = this.props;
+    onFormValuesChange(prevFormApi);
+  }
+
   values = {};
   fields = {};
   errors = {};
@@ -173,6 +179,7 @@ class Form extends Component {
       updateComponent: this.updateComponent,
       schema: this.props.schema
     },
+
     values: () => this.getFields(),
     touched: () => [...this.touched],
     isTouched: name => this.touched.has(name),
