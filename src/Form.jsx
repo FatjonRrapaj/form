@@ -19,6 +19,7 @@ class Form extends Component {
   }
 
   componendDidUpdate(prevProps) {
+    console.log('prevProps: ', prevProps);
     const { formApi } = prevProps;
     const { onFormValuesChange } = this.props;
     onFormValuesChange(prevFormApi);
