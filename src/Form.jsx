@@ -175,6 +175,7 @@ class Form extends Component {
 
   onChange = (field, formApi) => {
     const { onFormChange = () => {} } = this.props;
+
     onFormChange(field, formApi);
   };
 
